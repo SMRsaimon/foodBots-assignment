@@ -8,7 +8,7 @@ const OrderSummary = () => {
   let { restaurant, items = [], user } = Order;
 
   useEffect(() => {
-    fetch("http://resturant243.herokuapp.com/orderDetails")
+    fetch("https://resturant243.herokuapp.com/orderDetails")
       .then((res) => res.json())
       .then((data) => setOrder(data));
   }, []);
