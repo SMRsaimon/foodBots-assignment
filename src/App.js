@@ -23,7 +23,8 @@ function App() {
           <Navigation/>
             <OrderSummary/>
           </Route>
-          <Route  path="/notMatch">
+          <Route  path="*">
+          <Navigation/>
             <NotMatch/>
           </Route>
         </Switch>
