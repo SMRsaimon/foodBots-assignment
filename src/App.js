@@ -15,8 +15,7 @@ function App() {
           <Route exact path="/">
            <Navigation/>
             <UserInfo/>
-          </Route>
-        
+          </Route>       
           <Route  path="/userInfo">
           <Navigation/>
             <UserInfo/>
