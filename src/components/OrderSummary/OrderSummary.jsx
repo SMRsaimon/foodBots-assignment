@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import OrderItems from "./OrderItems";
 import "./OrderSummary.css";
 
 const OrderSummary = () => {
@@ -19,7 +20,7 @@ const OrderSummary = () => {
 //   "currency": "INR",
 //   "tax_pct": 2.5,
 //   "quantity": 2
-  console.log(Order);
+
 
   return (
     <>
@@ -64,27 +65,36 @@ const OrderSummary = () => {
                     <h4 className="text-primary">Order Items</h4>
                     <hr/>
 
-                    {items?.map((x) => (
-                      <>
-                        <div className="shadow p-4">
-                        <p> <strong>Name </strong>:{x.name} </p>
-                        <p> <strong>Category </strong>:{x.category}</p>
-                        <p>  <strong>Price </strong>:{x.price}{" "}{x.currency}</p>
-                        <p>  <strong>Quantity </strong>:{x.quantity}</p>
-                  
-                        </div>
-                       
+                
 
-                      
-                      </>
-                    ))}
+                    {items?.map((iteam) => <OrderItems iteam={iteam} />)}
                   </div>
                 </div>
               </div>
 
               <div className="col-md-4 mb-3">
                 <div className="card">
-                  <div className="card-body m-2">gg</div>
+                  <div className="card-body m-2">
+                  <h4 className="text-primary">Order Payment</h4>
+
+                  <div>
+                  <p className="d-flex justify-content-between">
+                        <strong>Total Items </strong>:{user?.phone}
+                      </p>
+                      <p className="d-flex justify-content-between">
+                        <strong>Total Price </strong>:{user?.phone}
+                      </p>
+                      <p className="d-flex justify-content-between">
+                        <strong>Tax :   &nbsp;</strong>  2.5%
+                      </p>
+                      <hr/>
+                      <p className="d-flex justify-content-between">
+                        <strong>Payable Total :   &nbsp;</strong>  2.5%
+                      </p>
+                  </div>
+                      
+
+                  </div>
                 </div>
               </div>
             </div>
