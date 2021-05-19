@@ -5,7 +5,7 @@ import "./OrderSummary.css";
 const OrderSummary = () => {
   const [Order, setOrder] = useState({});
 
-  const { restaurant, items, user } = Order;
+  let { restaurant, items=[], user } = Order;
 
   useEffect(() => {
     fetch("http://localhost:5000/orderDetails")
@@ -14,12 +14,22 @@ const OrderSummary = () => {
   }, []);
 
 
-//   "name": "Veg Cheese Burger",
-//   "category": "Burgers",
-//   "price": 150,
-//   "currency": "INR",
-//   "tax_pct": 2.5,
-//   "quantity": 2
+
+const getTotalIteam= items.reduce(
+    (accumulator, current) => {    
+        return accumulator+Number(current.quantity)
+    },
+    
+   0
+  );
+  const getTotalPrice= items.reduce(
+    (accumulator, current) => {    
+        return accumulator+Number(current.price)
+    },
+    
+   0
+  );
+const payableTotal=getTotalPrice+(getTotalPrice/100)*2.5
 
 
   return (
@@ -79,17 +89,17 @@ const OrderSummary = () => {
 
                   <div>
                   <p className="d-flex justify-content-between">
-                        <strong>Total Items </strong>:{user?.phone}
+                        <strong>Total Items </strong>: {getTotalIteam} pcs
                       </p>
                       <p className="d-flex justify-content-between">
-                        <strong>Total Price </strong>:{user?.phone}
+                        <strong>Total Price </strong>:{getTotalPrice}&nbsp;  INR
                       </p>
                       <p className="d-flex justify-content-between">
                         <strong>Tax :   &nbsp;</strong>  2.5%
                       </p>
                       <hr/>
                       <p className="d-flex justify-content-between">
-                        <strong>Payable Total :   &nbsp;</strong>  2.5%
+                        <strong>Payable Total :   &nbsp;</strong>  {payableTotal}
                       </p>
                   </div>
                       

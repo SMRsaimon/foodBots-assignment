@@ -1,7 +1,6 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
 import UserInfo from "./components/UserInfo/UserInfo";
 import OrderSummary from "./components/OrderSummary/OrderSummary";
 import NotMatch from "./components/NotMatch/NotMatch";
