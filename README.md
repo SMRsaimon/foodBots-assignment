@@ -1,3 +1,8 @@
-# Getting Started with Create React App
+# Getting Started with React Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Live Link](https://amazing-noether-f15ba8.netlify.app/).
+## Technology that I used.
+
+###  react.js, react-router, bootstrap5, node.js, express.js
+
+# For more than 6 or 7 items do not need to change code because My code is dynamic. When Item will increase my code calculates the increased item automatically. 
