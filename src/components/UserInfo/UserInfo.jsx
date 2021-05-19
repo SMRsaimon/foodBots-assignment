@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./UserInfo.css";
 import profileImg from "../../images/profileImg.png";
 
 const UserInfo = () => {
+  const [profile, setProfile] = useState({});
+
+  const { name, id, phone, about, address, dislikes, likes } = profile;
+  useEffect(() => {
+    fetch("http://localhost:5000/userInformation")
+      .then((res) => res.json())
+      .then((data) => setProfile(data));
+  }, []);
+
   return (
     <>
       <div id="user-info">
-        <div className="container user-info">
+        <div className="container p-3 pt-4">
           <div className="main-body">
             <div className="row gutters-sm">
               <div className="col-md-4 mb-3">
                 <div className="card">
-                  <div className="card-body">
+                  <div className="card-body m-2">
                     <div className="d-flex flex-column align-items-center text-center">
                       <img
                         src={profileImg}
@@ -20,13 +29,8 @@ const UserInfo = () => {
                         width="150"
                       />
                       <div className="mt-3">
-                        <h4>John Doe</h4>
-                        <p className="text-secondary mb-1">
-                          Full Stack Developer
-                        </p>
-                        <p className="text-muted font-size-sm">
-                          Bay Area, San Francisco, CA
-                        </p>
+                        <h4>{name}</h4>
+                        <p className="text-muted font-size-sm">{address}</p>
                       </div>
                     </div>
                   </div>
@@ -39,28 +43,22 @@ const UserInfo = () => {
                       <div className="col-sm-3">
                         <h6 className="mb-0">ID</h6>
                       </div>
-                      <div className="col-sm-9 text-secondary">
-                        Kenneth Valdez
-                      </div>
+                      <div className="col-sm-9 text-secondary">{id}</div>
                     </div>
                     <hr />
-                    
+
                     <div className="row">
                       <div className="col-sm-3">
                         <h6 className="mb-0">Phone</h6>
                       </div>
-                      <div className="col-sm-9 text-secondary">
-                        (239) 816-9029
-                      </div>
+                      <div className="col-sm-9 text-secondary">{phone}</div>
                     </div>
                     <hr />
                     <div className="row">
                       <div className="col-sm-3">
                         <h6 className="mb-0">About</h6>
                       </div>
-                      <div className="col-sm-9 text-secondary">
-                        (320) 380-4539
-                      </div>
+                      <div className="col-sm-9 text-secondary">{about}</div>
                     </div>
                     <hr />
                     <div className="row">
@@ -68,7 +66,9 @@ const UserInfo = () => {
                         <h6 className="mb-0">likes</h6>
                       </div>
                       <div className="col-sm-9 text-secondary">
-                        (320) 380-4539
+                        {likes?.map((x) => (
+                          <span>{x}, </span>
+                        ))}
                       </div>
                     </div>
                     <hr />
@@ -77,7 +77,9 @@ const UserInfo = () => {
                         <h6 className="mb-0">Dislikes</h6>
                       </div>
                       <div className="col-sm-9 text-secondary">
-                        (320) 380-4539
+                        {dislikes?.map((x) => (
+                          <span>{x}, </span>
+                        ))}
                       </div>
                     </div>
                     <hr />
@@ -85,9 +87,7 @@ const UserInfo = () => {
                       <div className="col-sm-3">
                         <h6 className="mb-0">Address</h6>
                       </div>
-                      <div className="col-sm-9 text-secondary">
-                        Bay Area, San Francisco, CA
-                      </div>
+                      <div className="col-sm-9 text-secondary">{address}</div>
                     </div>
                   </div>
                 </div>
