@@ -1,0 +1,9 @@
+.logo-img{
+
+    width: 100px;
+
+
+}
+.navbar-expand-md .navbar-nav {
+    flex-direction:row !important;
+}
