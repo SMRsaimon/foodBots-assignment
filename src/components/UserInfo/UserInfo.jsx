@@ -7,7 +7,7 @@ const UserInfo = () => {
 
   const { name, id, phone, about, address, dislikes, likes } = profile;
   useEffect(() => {
-    fetch("http://localhost:5000/userInformation")
+    fetch("http://resturant243.herokuapp.com/userInformation")
       .then((res) => res.json())
       .then((data) => setProfile(data));
   }, []);

@@ -5,32 +5,29 @@ import "./OrderSummary.css";
 const OrderSummary = () => {
   const [Order, setOrder] = useState({});
 
-  let { restaurant, items=[], user } = Order;
+  let { restaurant, items = [], user } = Order;
 
   useEffect(() => {
-    fetch("http://localhost:5000/orderDetails")
+    fetch("http://resturant243.herokuapp.com/orderDetails")
       .then((res) => res.json())
       .then((data) => setOrder(data));
   }, []);
 
-
-
-const getTotalIteam= items.reduce(
-    (accumulator, current) => {    
-        return accumulator+Number(current.quantity)
+  const getTotalIteam = items.reduce(
+    (accumulator, current) => {
+      return accumulator + Number(current.quantity);
     },
-    
-   0
-  );
-  const getTotalPrice= items.reduce(
-    (accumulator, current) => {    
-        return accumulator+Number(current.price)
-    },
-    
-   0
-  );
-const payableTotal=getTotalPrice+(getTotalPrice/100)*2.5
 
+    0
+  );
+  const getTotalPrice = items.reduce(
+    (accumulator, current) => {
+      return accumulator + Number(current.price);
+    },
+
+    0
+  );
+  const payableTotal = getTotalPrice + (getTotalPrice / 100) * 2.5;
 
   return (
     <>
@@ -73,11 +70,11 @@ const payableTotal=getTotalPrice+(getTotalPrice/100)*2.5
                 <div className="card">
                   <div className="card-body m-2">
                     <h4 className="text-primary">Order Items</h4>
-                    <hr/>
+                    <hr />
 
-                
-
-                    {items?.map((iteam) => <OrderItems iteam={iteam} />)}
+                    {items?.map((iteam) => (
+                      <OrderItems iteam={iteam} />
+                    ))}
                   </div>
                 </div>
               </div>
@@ -85,25 +82,23 @@ const payableTotal=getTotalPrice+(getTotalPrice/100)*2.5
               <div className="col-md-4 mb-3">
                 <div className="card">
                   <div className="card-body m-2">
-                  <h4 className="text-primary">Order Payment</h4>
+                    <h4 className="text-primary">Order Payment</h4>
 
-                  <div>
-                  <p className="d-flex justify-content-between">
+                    <div>
+                      <p className="d-flex justify-content-between">
                         <strong>Total Items </strong>: {getTotalIteam} pcs
                       </p>
                       <p className="d-flex justify-content-between">
-                        <strong>Total Price </strong>:{getTotalPrice}&nbsp;  INR
+                        <strong>Total Price </strong>:{getTotalPrice}&nbsp; INR
                       </p>
                       <p className="d-flex justify-content-between">
-                        <strong>Tax :   &nbsp;</strong>  2.5%
+                        <strong>Tax : &nbsp;</strong> 2.5%
                       </p>
-                      <hr/>
+                      <hr />
                       <p className="d-flex justify-content-between">
-                        <strong>Payable Total :   &nbsp;</strong>  {payableTotal}
+                        <strong>Payable Total : &nbsp;</strong> {payableTotal}
                       </p>
-                  </div>
-                      
-
+                    </div>
                   </div>
                 </div>
               </div>
