@@ -8,10 +8,26 @@ const OrderSummary = () => {
   let { restaurant, items = [], user } = Order;
 
   useEffect(() => {
-    fetch("https://resturant243.herokuapp.com/orderDetails")
-      .then((res) => res.json())
-      .then((data) => setOrder(data));
+    async function fetchMyAPI() {
+      try {
+        let response = await fetch(
+          "https://resturant243.herokuapp.com/orderDetails"
+        );
+        response = await response.json();
+        setOrder(response);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    fetchMyAPI();
   }, []);
+
+  // useEffect(() => {
+  //   fetch("https://resturant243.herokuapp.com/orderDetails")
+  //     .then((res) => res.json())
+  //     .then((data) => setOrder(data));
+  // }, []);
 
   const getTotalIteam = items.reduce(
     (accumulator, current) => {

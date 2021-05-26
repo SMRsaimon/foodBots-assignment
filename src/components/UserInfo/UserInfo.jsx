@@ -7,10 +7,25 @@ const UserInfo = () => {
 
   const { name, id, phone, about, address, dislikes, likes } = profile;
   useEffect(() => {
-    fetch("https://resturant243.herokuapp.com/userInformation")
-      .then((res) => res.json())
-      .then((data) => setProfile(data));
+    async function fetchMyAPI() {
+      try {
+        let response = await fetch(
+          "https://resturant243.herokuapp.com/userInformation"
+        );
+        response = await response.json();
+        setProfile(response);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchMyAPI();
   }, []);
+
+  // useEffect(() => {
+  //   fetch("https://resturant243.herokuapp.com/userInformation")
+  //     .then((res) => res.json())
+  //     .then((data) => setProfile(data));
+  // }, []);
 
   return (
     <>
